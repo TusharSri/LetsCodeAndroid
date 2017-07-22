@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ListViewImplementation</string>
+    <string name="below_is_the_list_of_marvel_superheros">Below is the list of Marvel Superheros</string>
+</resources>

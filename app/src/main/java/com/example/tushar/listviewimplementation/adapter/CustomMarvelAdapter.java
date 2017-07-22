@@ -38,13 +38,25 @@ public class CustomMarvelAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        CustomMarvelViewHolder customMarvelViewHolder = new CustomMarvelViewHolder();
-        view = layoutInflater.inflate(R.layout.list_item, null);
-        customMarvelViewHolder.country = (TextView) view.findViewById(R.id.textview_hero_name);
-        customMarvelViewHolder.icon = (ImageView) view.findViewById(R.id.textview_hero_image);
+    public View getView(int i, View convertView, ViewGroup viewGroup) {
+        CustomMarvelViewHolder customMarvelViewHolder;
+        if (convertView == null) {
+            customMarvelViewHolder = new CustomMarvelViewHolder();
+            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            customMarvelViewHolder.country = (TextView) convertView.findViewById(R.id.textview_hero_name);
+            customMarvelViewHolder.icon = (ImageView) convertView.findViewById(R.id.textview_hero_image);
+            convertView.setTag(customMarvelViewHolder);
+        }else{
+            customMarvelViewHolder = (CustomMarvelViewHolder) convertView.getTag();
+        }
         customMarvelViewHolder.country.setText(characterNames[i]);
         customMarvelViewHolder.icon.setImageResource(characterImages[i]);
-        return view;
+        return convertView;
+    }
+
+    public static class CustomMarvelViewHolder {
+        TextView country;
+        ImageView icon;
     }
 }
+
